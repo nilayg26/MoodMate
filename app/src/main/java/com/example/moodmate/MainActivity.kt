@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             MoodMateTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Android ni",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -42,6 +42,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MoodMateTheme {
-        Greeting("Android")
+        // A surface container using the 'background' color from the themeGreeting("Android")
+        Greeting("")
     }
 }
