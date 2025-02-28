@@ -147,12 +147,3 @@ fun getFrequencyList(map: SnapshotStateMap<Int, List<String>>): SnapshotStateLis
 }
 
 
-
-//@Preview
-//@Composable
-//fun ChartsPreview(){
-//    val navController= rememberNavController()
-//    val sharedPreferences= navController.context.getSharedPreferences("MoodMate",Context.MODE_PRIVATE)
-//    val chartViewModel= ChartViewModel(sharedPreferences)
-//    Charts(navController, chartViewModel)
-//}

@@ -8,11 +8,17 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
@@ -29,11 +35,10 @@ import com.example.moodmate.Pages.TodoListScreen
 import com.example.moodmate.Pages.Welcome
 import com.example.moodmate.ViewModels.AnimationViewModel
 import com.example.moodmate.ViewModels.AuthViewModel
-import com.example.moodmate.ViewModels.InternalDataBaseViewModel
 import com.example.moodmate.ViewModels.GeminiViewModel
+import com.example.moodmate.ViewModels.InternalDataBaseViewModel
 import com.example.moodmate.ui.theme.Colors
 import com.example.moodmate.ui.theme.MoodMateTheme
-import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,36 +100,62 @@ fun Navigation(
     animationViewModel: AnimationViewModel,
     internalDatabaseViewModel: InternalDataBaseViewModel
 ) {
-    val context= LocalContext.current
-    val coroutineScope= rememberCoroutineScope()
     val navController= rememberNavController()
-    NavHost(navController = navController, startDestination =if(!authViewModel.loginStatus.value){Welcome.route}else{Home.route}){
-        composable(Welcome.route){
-            Welcome(navController,authViewModel,animationViewModel)
+    LaunchedEffect(authViewModel.crashApp.value){
+         authViewModel.suspendApp()
+    }
+    if (!authViewModel.crashApp.value) {
+        NavHost(
+            navController = navController,
+            startDestination = if (!authViewModel.loginStatus.value) {
+                Welcome.route
+            } else {
+                Home.route
+            }
+        ) {
+            composable(Welcome.route) {
+                Welcome(navController, authViewModel, animationViewModel)
+            }
+            composable(Home.route) {
+                Home(navController, authViewModel, geminiViewModel, animationViewModel)
+            }
+            composable(Account.route) {
+                Account(navController, authViewModel, animationViewModel)
+            }
+            composable(QuizPage.route) {
+                QuizPage(navController, geminiViewModel)
+            }
+            composable(
+                Quiz.route,
+                enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
+                QuizScreen(navController, geminiViewModel)
+            }
+            composable(Charts.route) {
+                Charts(navController, internalDatabaseViewModel)
+            }
+            composable(MoodTracker.route) {
+                MoodTracker(
+                    navController,
+                    geminiViewModel,
+                    animationViewModel,
+                    internalDatabaseViewModel
+                )
+            }
+            composable(
+                ToDoList.route,
+                enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
+                TodoListScreen(navController, internalDatabaseViewModel)
+            }
+            composable(
+                EmergencyContacts.route,
+                enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
+                EmergencyContacts(navController, internalDatabaseViewModel)
+            }
         }
-        composable(Home.route) {
-           Home(navController,authViewModel,geminiViewModel,animationViewModel)
-        }
-        composable(Account.route) {
-            Account(navController,authViewModel,animationViewModel)
-        }
-        composable(QuizPage.route) {
-            QuizPage(navController,geminiViewModel)
-        }
-        composable(Quiz.route,enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
-          QuizScreen(navController,geminiViewModel)
-        }
-        composable(Charts.route) {
-            Charts(navController,internalDatabaseViewModel)
-        }
-        composable(MoodTracker.route) {
-           MoodTracker(navController,geminiViewModel,animationViewModel,internalDatabaseViewModel)
-        }
-        composable(ToDoList.route, enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
-            TodoListScreen(navController,internalDatabaseViewModel)
-        }
-        composable(EmergencyContacts.route, enterTransition = { slideInHorizontally(initialOffsetX = {it}) }) {
-            EmergencyContacts(navController,internalDatabaseViewModel)
+    }
+    else{
+        Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+            Text("Access Denied by Admin", fontSize = 50.sp, color = Color.Black)
         }
     }
 }
