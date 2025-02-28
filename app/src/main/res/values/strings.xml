@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">MoodMate</string>
     <string name="web_client_id">90659965546-l73htifo0th9crak5a3pvsmrmhgn8ce0.apps.googleusercontent.com</string>
+    <string name="though_of_the_day">Your response should ONLY contain a motivational thought of the day under 70 characters</string>
+    <string name="mood_tracker">Here are my feelings, assess my mood on a scale of 1 to 5 (5 means best 1 means worst, give only int value) and provide an ONLY emoji best suited to my mood, your response should consist off 20–30 words or less, Feelings:</string>
+    <string name="quiz">The map contains a pair of question and answer, </string>
+    <string name="meditation2">https://nilayg26.github.io/Animation/meditation2.json</string>
+    <string name="mood">https://nilayg26.github.io/Animation/mood.json</string>
+    <string name="yoga">https://nilayg26.github.io/Animation/yoga.json</string>
 </resources>

@@ -1,6 +1,7 @@
 import java.util.Properties
 
 plugins {
+    id("com.google.devtools.ksp")
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
@@ -43,9 +44,21 @@ android {
     buildFeatures {
         compose = true
     }
+    sourceSets {
+        getByName("main") {
+            assets {
+                srcDirs("src/main/assets")
+            }
+        }
+    }
 }
-
 dependencies {
+    ksp(libs.androidx.room.compiler.v250)
+    implementation (libs.androidx.room.runtime)
+    annotationProcessor (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
+    implementation(libs.androidx.material.icons.extended)
+    implementation (libs.ycharts)
     implementation(libs.generativeai)
     implementation(libs.lottie.compose)
     implementation (libs.ktor.client.android)
@@ -62,6 +75,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

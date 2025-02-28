@@ -1,48 +1,130 @@
 package com.example.moodmate
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.activity.viewModels
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.moodmate.Pages.Account
+import com.example.moodmate.Pages.Charts
+import com.example.moodmate.Pages.EmergencyContacts
+import com.example.moodmate.Pages.Home
+import com.example.moodmate.Pages.MoodTracker
+import com.example.moodmate.Pages.QuizPage
+import com.example.moodmate.Pages.QuizScreen
+import com.example.moodmate.Pages.TodoListScreen
+import com.example.moodmate.Pages.Welcome
+import com.example.moodmate.ViewModels.AnimationViewModel
+import com.example.moodmate.ViewModels.AuthViewModel
+import com.example.moodmate.ViewModels.InternalDataBaseViewModel
+import com.example.moodmate.ViewModels.GeminiViewModel
+import com.example.moodmate.ui.theme.Colors
 import com.example.moodmate.ui.theme.MoodMateTheme
+import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        val sharedPreferences= this.getSharedPreferences("MoodMate",Context.MODE_PRIVATE)
+        val animationViewModel by viewModels<AnimationViewModel>(
+            factoryProducer = {
+                object : ViewModelProvider.Factory{
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return (AnimationViewModel(sharedPreferences) as T)
+                    }
+                }
+            }
+        )
+        val chartViewModel by viewModels<InternalDataBaseViewModel>(
+            factoryProducer = {
+                object : ViewModelProvider.Factory{
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return (InternalDataBaseViewModel(sharedPreferences,this@MainActivity) as T)
+                    }
+                }
+            }
+        )
+        val geminiViewModel by viewModels<GeminiViewModel>(
+            factoryProducer = {
+                object : ViewModelProvider.Factory{
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return (GeminiViewModel(sharedPreferences) as T)
+                    }
+                }
+            }
+        )
+        val authViewModel :AuthViewModel by viewModels<AuthViewModel>(
+            factoryProducer = {
+                object : ViewModelProvider.Factory{
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return (AuthViewModel(sharedPreferences) as T)
+                    }
+                }
+            }
+        )
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(scrim = Colors.Background.toArgb(),
+                darkScrim = Colors.Background.toArgb()),
+            navigationBarStyle = SystemBarStyle.light(scrim = Colors.Background.toArgb(),
+                darkScrim = Colors.Background.toArgb()),
+        )
         setContent {
             MoodMateTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android ni",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                Navigation(authViewModel,geminiViewModel,animationViewModel,chartViewModel)
             }
         }
     }
 }
-
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MoodMateTheme {
-        // A surface container using the 'background' color from the themeGreeting("Android")
-        Greeting("")
+fun Navigation(
+    authViewModel: AuthViewModel,
+    geminiViewModel: GeminiViewModel,
+    animationViewModel: AnimationViewModel,
+    internalDatabaseViewModel: InternalDataBaseViewModel
+) {
+    val context= LocalContext.current
+    val coroutineScope= rememberCoroutineScope()
+    val navController= rememberNavController()
+    NavHost(navController = navController, startDestination =if(!authViewModel.loginStatus.value){Welcome.route}else{Home.route}){
+        composable(Welcome.route){
+            Welcome(navController,authViewModel,animationViewModel)
+        }
+        composable(Home.route) {
+           Home(navController,authViewModel,geminiViewModel,animationViewModel)
+        }
+        composable(Account.route) {
+            Account(navController,authViewModel,animationViewModel)
+        }
+        composable(QuizPage.route) {
+            QuizPage(navController,geminiViewModel)
+        }
+        composable(Quiz.route,enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
+          QuizScreen(navController,geminiViewModel)
+        }
+        composable(Charts.route) {
+            Charts(navController,internalDatabaseViewModel)
+        }
+        composable(MoodTracker.route) {
+           MoodTracker(navController,geminiViewModel,animationViewModel,internalDatabaseViewModel)
+        }
+        composable(ToDoList.route, enterTransition = { slideInHorizontally(initialOffsetX = { it }) }) {
+            TodoListScreen(navController,internalDatabaseViewModel)
+        }
+        composable(EmergencyContacts.route, enterTransition = { slideInHorizontally(initialOffsetX = {it}) }) {
+            EmergencyContacts(navController,internalDatabaseViewModel)
+        }
     }
 }
