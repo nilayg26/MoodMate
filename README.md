@@ -12,4 +12,4 @@ Mood Tracker is an AI-powered journal that helps users track their emotions, rec
 
 
 ## Download
-[Click To Download the latest version of MoodMate]()
+[Click To Download the latest version of MoodMate](https://github.com/nilayg26/MoodMate/releases/download/v1.0.0/mood_mate.apk)
