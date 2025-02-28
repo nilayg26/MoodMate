@@ -12,6 +12,7 @@ import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 data class User(
     var name:String,
@@ -21,10 +22,12 @@ data class User(
 class AuthViewModel(private val sharedPreferences: SharedPreferences):ViewModel() {
     val user:User=User("","")
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val firestore=FirebaseFirestore.getInstance()
     var authStatus = mutableStateOf("")
         private set
     var loginStatus= mutableStateOf(false)
         private set
+    var crashApp= mutableStateOf(false)
     init{
         val loginStatus=sharedPreferences.getBoolean("loginStatus",false)
         if (loginStatus){
@@ -37,6 +40,31 @@ class AuthViewModel(private val sharedPreferences: SharedPreferences):ViewModel(
         }
         else{
             authStatus.value=AuthState.Unauthenticated
+        }
+    }
+    fun suspendApp(){
+        try {
+            firestore.collection("Allow").document("crashApp").addSnapshotListener { snapshot,e ->
+                if (e!=null){
+                    println("Error from firestore is:${e.message} ")
+                }
+                if (snapshot!=null) {
+                        val crash = snapshot.data?.get("status").toString()
+                        if (crash == "yes") {
+                            crashApp.value = true
+                        }
+                        else{
+                            crashApp.value=false
+                        }
+                } else {
+                    if (e != null) {
+                        println("From crash(): ${e.message}")
+                    }
+                }
+            }
+        }
+        catch (e:Exception){
+            println("From firestore: "+e.message.toString())
         }
     }
     suspend fun login(context: Context) {

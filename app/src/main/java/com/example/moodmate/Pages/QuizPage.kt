@@ -71,9 +71,4 @@ fun QuizPage(navController: NavHostController, geminiViewModel: GeminiViewModel)
         }
     }
 }
-//@Preview(showBackground = true)
-//@Composable
-//fun LogInPreview(){
-//    QuizPage()
-//}
 
