@@ -101,7 +101,7 @@ fun Navigation(
     internalDatabaseViewModel: InternalDataBaseViewModel
 ) {
     val navController= rememberNavController()
-    LaunchedEffect(authViewModel.crashApp.value){
+    LaunchedEffect(Unit){
          authViewModel.suspendApp()
     }
     if (!authViewModel.crashApp.value) {
