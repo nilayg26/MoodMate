@@ -1,4 +1,4 @@
-# Mood Tracker - Your Personal Mood Journal
+# MoodMate - Your Personal Mood Journal
 
 ## 📌 Overview
 Mood Tracker is an AI-powered journal that helps users track their emotions, receive daily motivation, and maintain well-being.
