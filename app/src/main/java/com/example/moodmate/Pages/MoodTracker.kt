@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.moodmate.AnimationLottie
+import com.example.moodmate.Home
 import com.example.moodmate.MoodMateAlertDialogue
 import com.example.moodmate.MoodMateButton
 import com.example.moodmate.MoodMateTopAppBar
@@ -121,7 +122,11 @@ fun MoodTracker(
             topBar = {
                 MoodMateTopAppBar("Mood Tracker", backButton = true){
                     if (navController.currentBackStackEntry != null){
-                        navController.popBackStack()
+                        navController.navigate(Home.route){
+                            popUpTo(0){
+                                inclusive=true
+                            }
+                        }
                     }
                 }
             }
