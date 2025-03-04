@@ -12,4 +12,4 @@ MoodMate is an AI-powered journal that helps users track their emotions, receive
 
 
 ## Download
-[Click To Download the latest version of MoodMate](https://github.com/nilayg26/MoodMate/releases/download/v1.0.0/mood_mate.apk)
+[Click To Download the latest version of MoodMate](https://github.com/nilayg26/MoodMate/releases/download/v1.0.0/mood-mate.apk)
