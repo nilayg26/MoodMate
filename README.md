@@ -11,10 +11,10 @@ MoodMate is an AI-powered journal that helps users track their emotions, receive
 - **To-Do List**: Stay organized with a built-in task manager.
 - **Emergency Contact**: Quick access to important contacts in case of an emergency, Reach dialer directly from app.
 
-## Download
+## 📥 Download
 [Click to Download the latest version of MoodMate](https://github.com/nilayg26/MoodMate/releases/download/v1.0.0/mood-mate.apk)
 
-## Demonstration
+## 🎬 Demonstration
 [Click to view the demonstration](https://drive.google.com/file/d/1-CdfzotgF2TW3qz3Vc_6AIXBy4_BXQ1D/view?usp=sharing) 
 
 
