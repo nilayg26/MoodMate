@@ -1,5 +1,12 @@
 # MoodMate - Your Personal Mood Journal
 
+
+<div align="center">
+  <img src="https://nilayg26.github.io/Animation/MoodMateAssets/app_logo.png" alt="GitCommAI Logo" width="300"/>
+</div>
+
+
+
 ## 📌 Overview
 MoodMate is an AI-powered journal that helps users track their emotions, receive daily motivation, and maintain well-being.
 ## 📸 Some ScreenShots
