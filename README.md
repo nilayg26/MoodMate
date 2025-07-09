@@ -2,6 +2,14 @@
 
 ## 📌 Overview
 MoodMate is an AI-powered journal that helps users track their emotions, receive daily motivation, and maintain well-being.
+## 📸 Some ScreenShots
+| Image 1 | Image 2 | Image 3 | Image 4 | Image 5 | Image 6 |
+|---------|---------|---------|---------|---------|---------|
+| <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic2.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic10.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic11.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic4.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic8.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic5.jpeg" width="200"/> |
+
+| Image 7 | Image 8 | Image 9 | Image 10 |
+|---------|---------|---------|----------|
+| <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic9.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic1.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic9.jpeg" width="200"/> | <img src="https://nilayg26.github.io/Animation/MoodMateAssets/pic6.jpeg" width="200"/> 
 
 ## ✨ Features
 - **Daily Motivational Thought on Home Page**: Get a fresh motivational quote daily, personalized based on past moods.
