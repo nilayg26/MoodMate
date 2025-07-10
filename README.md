@@ -28,7 +28,7 @@ MoodMate is an AI-powered journal that helps users track their emotions, receive
 
 
 ## ✨ Features
-- **Beautiful UI, full of calming animations thoughtfully put.
+- **Beautiful UI**, full of calming animations thoughtfully put.
 - **Daily Motivational Thought on Home Page**: Get a fresh motivational quote daily, personalized based on past moods.
 - **Self-Assessment Quiz**: Detect dangerous mental disorders and illness using AI based assesments.
 - **Mood Tracker / Journal**: Answer daily questions, and AI will evaluate your mood on a scale of 1 to 5 and assigning emoji in accordance with your mood.
