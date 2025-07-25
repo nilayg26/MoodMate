@@ -31,6 +31,19 @@ MoodMate is an AI-powered journal that helps users track their emotions, receive
 
 * 🎨 Smooth, Stateful UI with Lottie Created a responsive, stateful & state-aware UI using Jetpack Compose with continuous ViewModel sync for robust backend activity. Integrated Lottie animations fetched from personally hosted GitHub Pages, then saved to device ROM using SharedPreferences to minimize mobile data usage.
 
+
+## 🌟 Potential Impact
+
+Helps users track emotions, stay motivated, and improve well-being through:
+
+- AI-driven mood insights and statistics  
+- Tests to detect various mental health conditions  
+- Daily motivational thoughts  
+- To-do list management  
+- Emergency contact access
+
+All designed to support mental health and promote emotional awareness.
+
 ---
 ## 📸 Some ScreenShots
 | Login | Home | Assessment |
