@@ -9,6 +9,29 @@
 
 ## 📌 Overview
 MoodMate is an AI-powered journal that helps users track their emotions, receive daily motivation, and maintain well-being.
+
+---
+
+## 🚀 How did I do it?
+
+* 🔐 **Google OAuth Integration**
+  Implemented `Google OAuth` (Continue with Google) using `Firebase Authentication` to securely authenticate users.
+
+* 🧠 **AI-Generated Thought of the Day**
+  Integrated `Google Gemini AI` via `Google’s AI Studio` to generate a daily thought, refreshed using `SharedPreferences` and the Java `Date` class.
+
+* 😊 **Mood Tracker with Visual Insights**
+  Built a mood tracker where `AI analyzes user mood`, stores the result using `SharedPreferences`, and visualizes it with an animated pie chart using the `YCharts` library.
+
+* 🩺 **Mental Health Assessment with AI Analysis**
+  Developed assessment tests for various mental health conditions. User responses are processed by `AI`, and the analysis is presented through a `responsive UI`.
+
+* ✅ **To-Do List & Emergency Contacts**
+  Implemented `to-do list` and `emergency contact` features using `Room` and `SQLite` to persist data in device ROM. Enabled direct dial functionality via the Android `Intent` class.
+
+* 🎨 Smooth, Stateful UI with Lottie Created a responsive, stateful & state-aware UI using Jetpack Compose with continuous ViewModel sync for robust backend activity. Integrated Lottie animations fetched from personally hosted GitHub Pages, then saved to device ROM using SharedPreferences to minimize mobile data usage.
+
+---
 ## 📸 Some ScreenShots
 | Login | Home | Assessment |
 |---------|---------|---------|
