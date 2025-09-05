@@ -30,7 +30,7 @@ MoodMate is an AI-powered journal that helps users track their emotions, receive
   Implemented `to-do list` and `emergency contact` features using `Room` and `SQLite` to persist data in device ROM. Enabled direct dial functionality via the Android `Intent` class.
 
 * 🎨 **Smooth, Stateful UI with Lottie**
-  Created a responsive, `stateful` & `state-aware UI` using `Jetpack Compose` integrated with sophisticated `ViewModels` to provide robust backend integration.
+  Created a responsive, `stateful` & `state-aware UI` using `Jetpack Compose` integrated with sophisticated `ViewModels` to provide robust backend integration. Implemented **Pull To Refresh** via `PullToRefreshBox` Composable
   Integrated `Lottie animations` fetched from personally hosted `GitHub Pages`, then saved to device `ROM` using `SharedPreferences` to minimize mobile data usage.
 
 ## 🚀 What Major Technologies & Concepts I Used?  
